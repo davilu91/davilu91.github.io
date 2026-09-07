@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xianglong (David) Lu · LLM Inference Systems</title>
+<meta name="description" content="Xianglong (David) Lu - Senior Solutions Architect at NVIDIA working on large-scale LLM inference: NVIDIA Dynamo, KV cache management, agentic serving, RL rollout infrastructure.">
+<style>
+  :root { --ink:#1b1f23; --muted:#5c6570; --line:#e6e9ec; --soft:#f6f8f9; --accent:#0b6e4f; --accent2:#0f8f66; --link:#0b5fa5; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:#fff; color:var(--ink); font:16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; }
+  a { color:var(--link); text-decoration:none; } a:hover { text-decoration:underline; }
+  .wrap { max-width:920px; margin:0 auto; padding:0 24px; }
+  nav { position:sticky; top:0; background:rgba(255,255,255,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); z-index:10; }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; height:56px; }
+  nav .brand { font-weight:700; letter-spacing:.2px; color:var(--ink); }
+  nav ul { display:flex; gap:22px; list-style:none; margin:0; padding:0; font-size:14px; }
+  nav ul a { color:var(--muted); } nav ul a:hover { color:var(--ink); text-decoration:none; }
+  header.hero { padding:72px 0 48px; }
+  .hero h1 { font-size:40px; line-height:1.15; margin:0 0 10px; letter-spacing:-.5px; }
+  .hero .role { font-size:19px; color:var(--muted); margin:0 0 22px; }
+  .hero p.lead { font-size:17px; max-width:720px; margin:0 0 26px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { font-size:13px; padding:5px 11px; border:1px solid var(--line); border-radius:999px; background:var(--soft); color:var(--ink); }
+  .links { display:flex; flex-wrap:wrap; gap:14px 22px; margin-top:26px; font-size:15px; }
+  .links a { display:inline-flex; align-items:center; gap:6px; }
+  section { padding:44px 0; border-top:1px solid var(--line); }
+  h2 { font-size:22px; margin:0 0 20px; letter-spacing:-.2px; }
+  h2 small { font-weight:400; color:var(--muted); font-size:14px; margin-left:10px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(270px, 1fr)); gap:16px; }
+  .card { border:1px solid var(--line); border-radius:12px; padding:18px 18px 16px; background:#fff; transition:box-shadow .15s, transform .15s; }
+  .card:hover { box-shadow:0 6px 24px rgba(0,0,0,.06); transform:translateY(-1px); }
+  .card h3 { margin:0 0 6px; font-size:16.5px; }
+  .card p { margin:0 0 10px; color:var(--muted); font-size:14.5px; }
+  .card .meta { font-size:12.5px; color:var(--muted); display:flex; gap:10px; flex-wrap:wrap; }
+  .card .meta span::before { content:"·"; margin-right:6px; color:#b8c0c8; } .card .meta span:first-child::before { content:""; margin:0; }
+  .tag { display:inline-block; font-size:11.5px; padding:2px 8px; border-radius:6px; background:#e8f5ef; color:var(--accent); font-weight:600; margin-bottom:8px; }
+  .tag.blue { background:#e8f0fa; color:var(--link); }
+  .timeline { list-style:none; margin:0; padding:0; }
+  .timeline li { display:grid; grid-template-columns:150px 1fr; gap:18px; padding:16px 0; border-bottom:1px dashed var(--line); }
+  .timeline li:last-child { border-bottom:0; }
+  .timeline .when { color:var(--muted); font-size:14px; padding-top:2px; }
+  .timeline h3 { margin:0 0 2px; font-size:16px; } .timeline .org { color:var(--muted); font-size:14px; margin-bottom:6px; }
+  .timeline ul { margin:6px 0 0 16px; padding:0; font-size:14.5px; color:#333; } .timeline ul li { display:block; padding:2px 0; border:0; }
+  .pub { padding:12px 0; border-bottom:1px dashed var(--line); font-size:14.5px; } .pub:last-child { border:0; }
+  .pub .t { font-weight:600; } .pub .v { color:var(--muted); }
+  footer { padding:36px 0 56px; color:var(--muted); font-size:13.5px; border-top:1px solid var(--line); }
+  @media (max-width:640px) { .hero h1 { font-size:32px; } .timeline li { grid-template-columns:1fr; gap:4px; } nav ul { gap:14px; } nav ul li:nth-child(n+4) { display:none; } }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#">Xianglong (David) Lu</a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#oss">Open source</a></li>
+    <li><a href="#talks">Talks</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <h1>Xianglong (David) Lu</h1>
+  <p class="role">Senior Solutions Architect, NVIDIA · Shanghai</p>
+  <p class="lead">I work on large-scale LLM inference systems: how requests are routed, how KV cache is kept and moved, and how inference clusters serve agentic and RL workloads on Kubernetes. Most of my recent work lands in <a href="https://github.com/ai-dynamo/dynamo" target="_blank" rel="noopener">NVIDIA Dynamo</a> and the engines around it (SGLang, vLLM, TensorRT-LLM), in production with large Chinese internet companies.</p>
+  <div class="chips">
+    <span class="chip">Distributed inference</span><span class="chip">KV cache management</span><span class="chip">Agentic serving</span>
+    <span class="chip">Prefill / decode disaggregation</span><span class="chip">RDMA / NIXL</span><span class="chip">RL rollout infra</span>
+    <span class="chip">CUDA / Triton kernels</span><span class="chip">Performance modelling</span>
+  </div>
+  <div class="links">
+    <a href="https://github.com/davilu-nvidia" target="_blank" rel="noopener">GitHub</a>
+    <a href="mailto:lxldavid91@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/REPLACE_ME" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div></header>
+
+<section id="work"><div class="wrap">
+  <h2>Selected work <small>2025 - 2026</small></h2>
+  <div class="grid">
+    <div class="card"><span class="tag">Agentic serving</span>
+      <h3>Program-aware scheduling for agent trajectories</h3>
+      <p>Ported and productionised ThunderAgent-style scheduling in Dynamo: pause and resume whole agent programs at tool boundaries instead of evicting request by request, with a native session-aware admission policy in the KV router. Large gains in prefix hit rate and TTFT on SWE-bench Lite workloads.</p>
+      <div class="meta"><span>Dynamo router</span><span>SGLang</span><span>Rust / Python</span></div>
+    </div>
+    <div class="card"><span class="tag">Routing</span>
+      <h3>KV-aware routing in production</h3>
+      <p>Benchmarked Dynamo's KV-aware router against round-robin and session-sticky strategies on long-context multimodal traffic; showed that balancing cache reuse against live load beats maximising hit rate alone, cutting TTFT several-fold at equal QPS.</p>
+      <div class="meta"><span>Flash Indexer</span><span>PD disaggregation</span><span>Production A/B</span></div>
+    </div>
+    <div class="card"><span class="tag">KV cache</span>
+      <h3>Hierarchical KV cache offload</h3>
+      <p>Contributor to FlexKV, a multi-tier KV cache system (GPU, CPU, disk, remote) integrated with TensorRT-LLM and NIXL; worked on CUDA IPC transfer paths and host-memory accounting for disaggregated deployments.</p>
+      <div class="meta"><span>FlexKV</span><span>TensorRT-LLM</span><span>CUDA IPC</span></div>
+    </div>
+    <div class="card"><span class="tag">RL infrastructure</span>
+      <h3>Dynamo as the rollout engine for verl</h3>
+      <p>Integrated Dynamo into the verl reinforcement-learning stack so agentic rollouts run on a disaggregated, session-aware serving layer. Delivered as a recipe in verl-recipe together with the verl community.</p>
+      <div class="meta"><span>verl</span><span>RL rollout</span><span>Multi-turn agents</span></div>
+    </div>
+    <div class="card"><span class="tag">Performance</span>
+      <h3>Automated parallelism sweeps for PD-disaggregated serving</h3>
+      <p>Built a fully automatic sweep that explores TP / PP / DP-attention / EP / MTP configurations for prefill and decode under a given SLA, matches QPS between the two sides, and reports throughput per 1,000 GPUs on PCIe-only Blackwell workstation clusters.</p>
+      <div class="meta"><span>SGLang</span><span>SLA-driven</span><span>Shell / Python</span></div>
+    </div>
+    <div class="card"><span class="tag">Simulation</span>
+      <h3>Digital twins for inference clusters</h3>
+      <p>Validated Dynamo's simulation stack (AI Configurator and DynoSim) end to end against real GB200 runs for KV-router deployments, so deployment configs can be tuned before touching hardware.</p>
+      <div class="meta"><span>AI Configurator</span><span>DynoSim</span><span>GB200</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="oss"><div class="wrap">
+  <h2>Open source</h2>
+  <div class="grid">
+    <div class="card"><span class="tag blue">Tool</span><h3><a href="https://github.com/davilu-nvidia/aa-loadgen" target="_blank" rel="noopener">aa-loadgen</a></h3><p>AA-AgentPerf-style load generator for multi-turn agentic inference benchmarks: replays real agent trajectories with tool-call gaps instead of independent requests.</p></div>
+    <div class="card"><span class="tag blue">Tool</span><h3><a href="https://github.com/davilu-nvidia/toklin" target="_blank" rel="noopener">toklin</a></h3><p>Deployment, load generation and metrics tooling for token-level inference benchmarking on Kubernetes.</p></div>
+    <div class="card"><span class="tag blue">Kernel</span><h3><a href="https://github.com/davilu-nvidia/cutedsl_linear_atten" target="_blank" rel="noopener">cutedsl_linear_atten</a></h3><p>High-performance chunk-wise causal linear attention kernel for NVIDIA B200, written in Triton and CuTe DSL.</p></div>
+    <div class="card"><span class="tag blue">Plugin</span><h3><a href="https://github.com/davilu-nvidia/openclaw-dynamo-provider" target="_blank" rel="noopener">openclaw-dynamo-provider</a></h3><p>OpenClaw plugin: Dynamo provider with agent-context tracing and per-subagent KV session isolation.</p></div>
+    <div class="card"><span class="tag blue">Sweep</span><h3><a href="https://github.com/davilu-nvidia/pro5k_agentic_config_sweep" target="_blank" rel="noopener">pro5k_agentic_config_sweep</a></h3><p>Automatic SGLang parallel-config sweep for PD-disaggregated serving under TTFT / TPOT SLAs.</p></div>
+    <div class="card"><span class="tag blue">Tutorial</span><h3><a href="https://github.com/davilu-nvidia/Awesome-AI-Dynamo-Tutorial" target="_blank" rel="noopener">Awesome-AI-Dynamo-Tutorial</a></h3><p>Code walk-through and case studies for NVIDIA Dynamo.</p></div>
+  </div>
+  <p style="color:var(--muted);font-size:14px;margin-top:14px">Also contributing to <a href="https://github.com/ai-dynamo/dynamo" target="_blank" rel="noopener">ai-dynamo/dynamo</a>, <a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener">sglang</a>, <a href="https://github.com/verl-project/verl-recipe" target="_blank" rel="noopener">verl-recipe</a> and <a href="https://github.com/ai-dynamo/aiconfigurator" target="_blank" rel="noopener">aiconfigurator</a>.</p>
+</div></section>
+
+<section id="talks"><div class="wrap">
+  <h2>Talks</h2>
+  <div class="pub"><span class="t">From Chatbots to Agentic AI: Running NVIDIA Dynamo the Kubernetes Way</span><br><span class="v">KubeCon + CloudNativeCon + OpenInfra Summit Asia + PyTorch Conference China 2026 · with the RoleBasedGroup (RBG) team</span></div>
+  <div class="pub"><span class="t">NVIDIA Dynamo workshops and customer deep-dives</span><br><span class="v">KV-aware routing, PD disaggregation, agentic serving and cold-start optimisation for Chinese internet and cloud customers, 2025 - 2026</span></div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <h2>Experience</h2>
+  <ul class="timeline">
+    <li><div class="when">Oct 2020 - present</div><div>
+      <h3>Senior Solutions Architect</h3><div class="org">NVIDIA · Beijing, then Shanghai</div>
+      <ul>
+        <li>Subject-matter expert for NVIDIA Dynamo and Triton Inference Server in China; lead an SME team driving adoption with top internet customers</li>
+        <li>End-to-end inference architecture for LLM, multimodal and recommendation workloads: routing, KV cache, disaggregation, RDMA transport, cold start</li>
+        <li>Upstream contributions and reference implementations across Dynamo, SGLang, TensorRT-LLM and verl</li>
+      </ul></div></li>
+    <li><div class="when">Oct 2019 - Oct 2020</div><div>
+      <h3>Technical Marketing Engineer</h3><div class="org">Renesas Electronics America · San Jose, CA</div>
+      <ul><li>CNN optimisation for R-Car SoCs with lead OEMs and Tier 1s; ADAS and autonomous platform business development in the Bay Area</li></ul></div></li>
+    <li><div class="when">Jun 2017 - Oct 2019</div><div>
+      <h3>R&amp;D Engineer</h3><div class="org">Renesas Electronics America · Farmington Hills, MI</div>
+      <ul><li>Real-time lane detection and parking-space detection on R-Car V3H / V3M; CNN acceleration on Renesas CNN IP and CV Engine</li></ul></div></li>
+    <li><div class="when">Aug 2016 - Jun 2017</div><div>
+      <h3>Intelligent Vehicle Engineer</h3><div class="org">Changan US R&amp;D Center · Plymouth, MI</div>
+      <ul><li>LiDAR / camera / GNSS fusion, SLAM and particle-filter localisation for autonomous driving prototypes</li></ul></div></li>
+    <li><div class="when">2013 - 2016</div><div>
+      <h3>M.S. Electrical and Computer Engineering</h3><div class="org">Arizona State University · B.Eng. Electrical Engineering &amp; Automation, Huazhong University of Science and Technology</div></div></li>
+  </ul>
+</div></section>
+
+<section id="publications"><div class="wrap">
+  <h2>Publications</h2>
+  <div class="pub"><span class="t">VCbot: An open Vehicular Cloud Testbed using Mobile Robot</span><br><span class="v">D. Lu, D. Huang, X. Lu, Z. Li · IoV-VoI Workshop, ACM 2016</span></div>
+  <div class="pub"><span class="t">Modeling, design and control of low-cost differential-drive robotic ground vehicles: Part I - Single vehicle study</span><br><span class="v">A. A. Rodriguez et al. (incl. X. Lu) · IEEE CCTA 2017</span></div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <h2>Contact</h2>
+  <p>Email <a href="mailto:lxldavid91@gmail.com">lxldavid91@gmail.com</a> · GitHub <a href="https://github.com/davilu-nvidia" target="_blank" rel="noopener">davilu-nvidia</a> · LinkedIn <a href="https://www.linkedin.com/in/REPLACE_ME" target="_blank" rel="noopener">add your profile URL</a></p>
+  <p style="color:var(--muted);font-size:14px">Open to conversations about inference systems, agentic serving and RL infrastructure.</p>
+</div></section>
+
+<footer><div class="wrap">© 2026 Xianglong Lu · Views are my own.</div></footer>
+</body>
+</html>
