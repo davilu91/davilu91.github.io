@@ -33,7 +33,7 @@
   /* hero */
   .hero{padding:88px 0 64px;position:relative;overflow:hidden}
   .hero::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(to right,rgba(16,20,24,.04) 1px,transparent 1px),linear-gradient(to bottom,rgba(16,20,24,.04) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 20% 10%,black 25%,transparent 70%);mask-image:radial-gradient(ellipse at 20% 10%,black 25%,transparent 70%)}
-  .hero .wrap{display:block;max-width:820px}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
   .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,5.4vw,66px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px;color:var(--ink);font-variation-settings:"opsz" 144}
   .hero h1 em{font-style:italic;color:var(--accent);font-weight:300}
   .hero .who{font-size:17px;color:var(--ink-2);margin:0 0 6px}
@@ -47,7 +47,7 @@
   .btn:hover{transform:translateY(-1px)}
   .btn svg{width:16px;height:16px}
 
-  .diagram svg{width:100%;height:auto;display:block}
+  .photo{justify-self:end;width:100%;max-width:380px;aspect-ratio:3/4;object-fit:cover;object-position:50% 20%;border-radius:18px;box-shadow:0 24px 60px rgba(16,20,24,.16)}
   .diagram .cap{margin-top:12px;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
   .flow{stroke-dasharray:4 10;animation:flow 2.4s linear infinite}@keyframes flow{to{stroke-dashoffset:-56}}
   .pulse{animation:pulse 2.2s ease-in-out infinite}@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
@@ -138,7 +138,7 @@
 
   .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease} .rv.in{opacity:1;transform:none}
 
-  @media (max-width:900px){.grid,.oss{grid-template-columns:1fr 1fr}.pillars{grid-template-columns:1fr}.pillar{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}.about{grid-template-columns:1fr}.avatar{width:140px;height:140px;font-size:46px}.two,.contact{grid-template-columns:1fr}}
+  @media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.photo{justify-self:start;max-width:320px}.grid,.oss{grid-template-columns:1fr 1fr}.pillars{grid-template-columns:1fr}.pillar{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}.about{grid-template-columns:1fr}.avatar{width:140px;height:140px;font-size:46px}.two,.contact{grid-template-columns:1fr}}
   @media (max-width:640px){.grid,.oss,.facts{grid-template-columns:1fr}.tl .row{grid-template-columns:1fr;gap:6px}nav ul li:nth-child(n+3){display:none}}
 </style>
 </head>
@@ -168,6 +168,7 @@
       <a class="btn" href="https://scholar.google.com/" target="_blank" rel="noopener">Scholar</a>
     </div>
   </div>
+  <img class="photo" src="assets/profile.jpg" alt="Xianglong Lu at NVIDIA GTC 2026">
 </div></header>
 
 <section id="experience" class="light"><div class="wrap">
