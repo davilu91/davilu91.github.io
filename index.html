@@ -109,6 +109,9 @@
   .item .when{font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:4px}
   .item h3{margin:0 0 6px;font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.3}
   .item p{margin:0;color:var(--ink-2);font-size:14.5px}
+  .item.feat{display:grid;grid-template-columns:1fr 150px;gap:18px;align-items:start}
+  .poster{width:150px;border-radius:10px;border:1px solid var(--line);box-shadow:0 8px 24px rgba(16,20,24,.10);transition:transform .2s}
+  .poster:hover{transform:scale(1.03)}
 
   /* resume */
   .tl{position:relative;padding-left:30px}
@@ -244,7 +247,7 @@
 <section id="talks"><div class="wrap two">
   <div>
     <div class="head rv"><span class="num">06 / TALKS</span><h2>Talks</h2></div>
-    <div class="item rv"><div class="when">2026 · KUBECON CHINA</div><h3>From Chatbots to Agentic AI: Running NVIDIA Dynamo the Kubernetes Way</h3><p>KubeCon + CloudNativeCon + OpenInfra Summit Asia + PyTorch Conference China</p></div>
+    <div class="item rv feat"><div><div class="when">2026 · KUBECON CHINA · SHANGHAI</div><h3>From Chatbots to Agentic AI: Running NVIDIA Dynamo the Kubernetes Way</h3><p>KubeCon + CloudNativeCon + OpenInfra Summit Asia + PyTorch Conference China · Sep 8, 13:45 – 14:15, Grand Ballroom II + III, Shanghai International Convention Center · with Chu Bo, Alibaba Cloud</p></div><a href="assets/kubecon-china-2026.jpg" target="_blank" rel="noopener"><img class="poster" src="assets/kubecon-china-2026.jpg" alt="KubeCon China 2026 session poster"></a></div>
     <div class="item rv"><div class="when">2026 · GTC SAN JOSE</div><h3>Supercharge LLM Inference With Dynamo</h3><p>NVIDIA GTC</p></div>
     <div class="item rv"><div class="when">2026 · SHENZHEN</div><h3>Empowering Agentic LLM Inference with NVIDIA Dynamo</h3><p>NVIDIA AI Open Day, LLM Inference Track</p></div>
     <div class="item rv"><div class="when">2026</div><h3>Dynamo: Accelerating Agentic Inference Infrastructure</h3><p>NVIDIA Expert Technical Salon</p></div>
